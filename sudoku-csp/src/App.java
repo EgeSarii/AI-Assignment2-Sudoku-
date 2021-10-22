@@ -19,5 +19,8 @@ public class App {
             System.out.println("Could not solve this sudoku :(");
         }
         game1.showSudoku();
+
+        Sudoku sudoku = new Sudoku(filePath);
+        System.out.println(sudoku.getBoard()[0][3].getNeighbours());
     }
 }

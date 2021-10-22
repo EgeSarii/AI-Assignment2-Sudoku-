@@ -1,5 +1,6 @@
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -90,19 +91,25 @@ public class Sudoku {
     {
       if((j+1) % 3 ==1) //column 1,4, 7
       {
-        List<Field> newNeighbours = Arrays.asList(grid[i+1][j+1],grid[i+1][j+2],grid[i+2][j+1],grid[i+2][j+2]);
+        List<Field> inSameGrid = Arrays.asList(grid[i+1][j+1],grid[i+1][j+2],grid[i+2][j+1],grid[i+2][j+2]);
+        ArrayList<Field> newNeighbours = new ArrayList<>();
+        newNeighbours.addAll(inSameGrid);
         sameRowColumn (newNeighbours, i, j, grid);
         field.setNeighbours(newNeighbours);
       }
       else if ((j+1) % 3 ==2) //column 2,5,8
       {
-        List<Field> newNeighbours = Arrays.asList(grid[i+1][j-1],grid[i+2][j-1],grid[i+1][j+1],grid[i+2][j+1]);
+        List<Field> inSameGrid = Arrays.asList(grid[i+1][j-1],grid[i+2][j-1],grid[i+1][j+1],grid[i+2][j+1]);
+        ArrayList<Field> newNeighbours = new ArrayList<>();
+        newNeighbours.addAll(inSameGrid);
         sameRowColumn (newNeighbours, i, j, grid);
         field.setNeighbours(newNeighbours);
       }
       else //(j+1)%3 ==0   column 3,6,9
       {
-        List<Field> newNeighbours = Arrays.asList(grid[i+1][j-1],grid[i+2][j-1],grid[i+2][j-1],grid[i+2][j-2]);
+        List<Field> inSameGrid = Arrays.asList(grid[i+1][j-1],grid[i+2][j-1],grid[i+2][j-1],grid[i+2][j-2]);
+        ArrayList<Field> newNeighbours = new ArrayList<>();
+        newNeighbours.addAll(inSameGrid);
         sameRowColumn (newNeighbours, i, j, grid);
         field.setNeighbours(newNeighbours);
       }
@@ -111,19 +118,25 @@ public class Sudoku {
     {
       if((j+1) % 3 ==1) //column 1,4, 7
       {
-        List<Field> newNeighbours = Arrays.asList(grid[i-1][j+1],grid[i-1][j+2],grid[i+1][j+1],grid[i+1][j+2]);
+        List<Field> inSameGrid = Arrays.asList(grid[i-1][j+1],grid[i-1][j+2],grid[i+1][j+1],grid[i+1][j+2]);
+        ArrayList<Field> newNeighbours = new ArrayList<>();
+        newNeighbours.addAll(inSameGrid);
         sameRowColumn (newNeighbours, i, j, grid);
         field.setNeighbours(newNeighbours);
       }
       else if ((j+1) % 3 ==2) //column 2,5,8
       {
-        List<Field> newNeighbours = Arrays.asList(grid[i+1][j-1],grid[i+1][j+1],grid[i-1][j+1],grid[i-1][j-1]);
+        List<Field> inSameGrid = Arrays.asList(grid[i+1][j-1],grid[i+1][j+1],grid[i-1][j+1],grid[i-1][j-1]);
+        ArrayList<Field> newNeighbours = new ArrayList<>();
+        newNeighbours.addAll(inSameGrid);
         sameRowColumn (newNeighbours, i, j, grid);
         field.setNeighbours(newNeighbours);
       }
       else //(j+1)%3 ==0   column 3,6,9
       {
-        List<Field> newNeighbours = Arrays.asList(grid[i-1][j-1],grid[i-1][j-2],grid[i+1][j-1],grid[i+1][j-2]);
+        List<Field> inSameGrid = Arrays.asList(grid[i-1][j-1],grid[i-1][j-2],grid[i+1][j-1],grid[i+1][j-2]);
+        ArrayList<Field> newNeighbours = new ArrayList<>();
+        newNeighbours.addAll(inSameGrid);
         sameRowColumn (newNeighbours, i, j, grid);
         field.setNeighbours(newNeighbours);
       }
@@ -132,19 +145,25 @@ public class Sudoku {
     {
       if((j+1) % 3 ==1) //column 1,4, 7
       {
-        List<Field> newNeighbours = Arrays.asList(grid[i-1][j+1],grid[i-1][j+2],grid[i-2][j+1],grid[i-2][j+2]);
+        List<Field> inSameGrid = Arrays.asList(grid[i-1][j+1],grid[i-1][j+2],grid[i-2][j+1],grid[i-2][j+2]);
+        ArrayList<Field> newNeighbours = new ArrayList<>();
+        newNeighbours.addAll(inSameGrid);
         sameRowColumn (newNeighbours, i, j, grid);
         field.setNeighbours(newNeighbours);
       }
       else if ((j+1) % 3 ==2) //column 2,5,8
       {
-        List<Field> newNeighbours = Arrays.asList(grid[i-1][j-1],grid[i-1][j+1],grid[i-2][j+1],grid[i-2][j-1]);
+        List<Field> inSameGrid = Arrays.asList(grid[i-1][j-1],grid[i-1][j+1],grid[i-2][j+1],grid[i-2][j-1]);
+        ArrayList<Field> newNeighbours = new ArrayList<>();
+        newNeighbours.addAll(inSameGrid);
         sameRowColumn (newNeighbours, i, j, grid);
         field.setNeighbours(newNeighbours);
       }
       else //(j+1)%3 ==0   column 3,6,9
       {
-        List<Field> newNeighbours = Arrays.asList(grid[i-1][j-1],grid[i-1][j-2],grid[i-2][j-1],grid[i-2][j-2]);
+        List<Field> inSameGrid = Arrays.asList(grid[i-1][j-1],grid[i-1][j-2],grid[i-2][j-1],grid[i-2][j-2]);
+        ArrayList<Field> newNeighbours = new ArrayList<>();
+        newNeighbours.addAll(inSameGrid);
         sameRowColumn (newNeighbours, i, j, grid);
         field.setNeighbours(newNeighbours);
       }
