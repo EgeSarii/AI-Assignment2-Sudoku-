@@ -1,0 +1,16 @@
+18.10.2021
+
+Gorunuse gore implement etmemiz gereken (officially) 3 yer var. Bunlar Game classinda solve() ve validSolution() functionlari.
+Bir desudoku sinifinda addNeighbours() methodu.
+
+Anladigim kadariyla her bir cell e her bir harf koydugumuz yere field diyoruz. Eyvallah. Bu fieldlarin neighbourlari var.
+Ve aslinda biz arc consistincy leri bunlarin uzerinden sagliyoruz dogal olarak.
+Saniyorum ilk olarak bu addNeighbours() fonksiyonunu implement etmek lazim.
+----------
+28.10.2021
+
+Ilk fonksiyonu addNeighbours() methodunu implement ettim guzel calisiyor. Belki bir kod duzenlemesi yapmak gerekebilir. Simdilik
+birakacagim.
+
+Simdi yapmam gereken AC-3 algoritmasina hazir hale getirmek. Bunun icin priority queue gibi bir sey de kullanabilirim ya da dumduz bir
+liste de kullanabilirim. Belki ARC gibi bir class olusturmam gerekiyor. Bir bakalim.
