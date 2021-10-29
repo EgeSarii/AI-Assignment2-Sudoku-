@@ -20,16 +20,15 @@ public class Field {
     {
       this.domain.add(i);
     } 
-    for(Field n : this.neighbours)
-    {
-      arcs.add(new Arc(this, n)); // Add each neighbour as an arc
-    }
-    }
+    this.arcs = new ArrayList<>();
+  }
 
   // Constructor in case the field is known, i.e., it contains a value
   Field(int initValue) {
     this.value = initValue;
     this.domain = new ArrayList<>();
+    this.domain.add(initValue);
+    this.arcs = new ArrayList<>();
     // does not add arc since it is not a variable to be changed.
   }
 
@@ -77,6 +76,19 @@ public class Field {
   public void setArcs(List<Arc> arcs)
   {
     this.arcs = arcs;
+  }
+
+  public void initializeArcs()
+  {
+    if(this.value ==0) // if the field is unknown
+    {
+      for(Field n : this.neighbours)
+      {
+  
+        this.arcs.add(new Arc(this, n)); // Add each neighbour as an arc
+      }
+    }
+
   }
 
 

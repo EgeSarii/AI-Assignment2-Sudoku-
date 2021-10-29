@@ -29,3 +29,10 @@ Dusunursek birden fazla fonskiyon var :
 2- Find the arcs containing Xi on the right hand side (demek ki bir arc bir tuple bir binary demek)
 3- Update domain of Xi
 4- Check the domain of left-hand side and check for all values there is a value in the domain of the right-hand side
+
+
+---
+Biraz update iyi olur. Arc classini olusturdum. Mantigim su sekilde. Field icinde arc listesi olusturdum. Eger basta sabit bir deger
+varsa arc listesi bos. Eger yoksa neighbourlari right hand olarak ekliyorum. Boylece aslinda 31 sabit var ( evet 31) bu 1620 - 620 =
+1000 arc demek. Test ettim dogru. Cunku her unknown field 20 arc yapacak. 50 tane unknown var. Hesap tutuyor. Yani unknown-> 6 gibi
+bir arc var ancak asla 6-> unknown yok. Bunu halletmek iyi oldu
