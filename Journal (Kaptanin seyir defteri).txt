@@ -14,3 +14,18 @@ birakacagim.
 
 Simdi yapmam gereken AC-3 algoritmasina hazir hale getirmek. Bunun icin priority queue gibi bir sey de kullanabilirim ya da dumduz bir
 liste de kullanabilirim. Belki ARC gibi bir class olusturmam gerekiyor. Bir bakalim.
+-----------------------------
+29.10.2021
+
+Simdi arc consistincy mantigi ile dusunmem ve sudokuyu bu yonde cozmem gerek. Simdi her bir field yani her bir cell,toplam
+20 neighbour indan farkli olmak zorunda. Yani aslinda her bir cell icin ben 20 tane arc yapiyorum. yani mesela (0,3) teki cell icin ya
+da field diyelim, 20 tane arc vardir. (0,3) -> (0,4) , (0,3) -> (0,5).. (0,3) -> (1,3) gibi.
+Hakikaten bir Arc sinifi olusturabilirim.
+
+Simdi dusundum de her bir field icin 20 arc var. Demek ki toplam arc sayisi = toplam field sayisi x 20 = 9x9 x20 = 81x20 = 1620. Wow.
+
+Dusunursek birden fazla fonskiyon var :
+1- A function that checks if the arc is in the list or not
+2- Find the arcs containing Xi on the right hand side (demek ki bir arc bir tuple bir binary demek)
+3- Update domain of Xi
+4- Check the domain of left-hand side and check for all values there is a value in the domain of the right-hand side

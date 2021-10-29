@@ -1,11 +1,12 @@
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class Field {
   private int value = 0;
   private List<Integer> domain;
   private List<Field> neighbours; //A list of all fields that this field is constrained by
-
+  private List<Arc> arcs ;
   /*
    * ==============
    *  CONSTRUCTORS
@@ -16,13 +17,20 @@ public class Field {
   Field() {
     this.domain = new ArrayList<>(9);
     for (int i = 1; i < 10; i++)
+    {
       this.domain.add(i);
-  }
+    } 
+    for(Field n : this.neighbours)
+    {
+      arcs.add(new Arc(this, n)); // Add each neighbour as an arc
+    }
+    }
 
   // Constructor in case the field is known, i.e., it contains a value
   Field(int initValue) {
     this.value = initValue;
     this.domain = new ArrayList<>();
+    // does not add arc since it is not a variable to be changed.
   }
 
   /*
@@ -56,6 +64,21 @@ public class Field {
     newNeighbours.remove(b);
     return newNeighbours;
   }
+
+  /*
+   * =====================
+   *  ARC FUNCTIONS
+   * =====================
+   */
+  public List<Arc> getArcs()
+  {
+    return arcs;
+  }
+  public void setArcs(List<Arc> arcs)
+  {
+    this.arcs = arcs;
+  }
+
 
   /*
    * ==================
