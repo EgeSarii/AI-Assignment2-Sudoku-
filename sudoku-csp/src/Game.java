@@ -22,7 +22,7 @@ public class Game {
 
     // For every field initialize its arcs (if it is a constant value, i.e. known then its arc list is empty)
     //Then add these arcs to the queue.
-    List<Arc> arcs = new ArrayList<>();
+    List<Arc> arcs = new ArrayList<>(); // arc list of the game
     for (Field[] row : sudoku.getBoard())
     {
       for (Field field :row)
@@ -31,19 +31,15 @@ public class Game {
         arcs.addAll(field.getArcs());
       }
     }
-    /*System.out.println(arcs.size());
-    Arc arc = arcs.get(2);
-    System.out.println(arc.getRightHandSide().getValue());
-    revise(arc);
-    System.out.println(arc.getLeftHandSide().getDomain());
-    System.out.println(arc.getRightHandSide().getDomain());
-    */
-    System.out.println(arcs.isEmpty());
+    List<Arc> listOfArcs = arcs; //agenda of arcs
+    
     //while queue is not empty
-    while(!! arcs.isEmpty())
+
+    while(!listOfArcs.isEmpty())
     {
       //take the first element first arc
-      Arc arc = arcs.get(0);
+      Arc arc = listOfArcs.get(0);
+      listOfArcs.remove(0);
       Integer arcLeftDomainSize = arc.getLeftHandSide().getDomainSize();
 
       //revise the arc \\removeFromDomain 
@@ -57,8 +53,8 @@ public class Game {
       // if the domain size has changed
       if(arcLeftDomainSize - arc.getLeftHandSide().getDomainSize() !=0 )
       {
-        //for each right hand side of the arc add the queue if it is not on the queue
-        //find occurences?
+        //for all arcs contain the left hand side as the right hand side add to the list
+        listOfArcs.addAll(findRightHandSides(arc.getLeftHandSide(),arcs , listOfArcs));
       }
 
     }
@@ -80,7 +76,7 @@ public class Game {
   {
     Field leftHand = arc.getLeftHandSide();
     Field rightHand = arc.getRightHandSide();
-
+    List<Integer> toRemove = new ArrayList();
     for (int valueLeft : (leftHand.getDomain())) //for all values in the domain of left hand side
     {
       for(int valueRight : rightHand.getDomain()) //there exists a value meets the arc in the domain of right hand side
@@ -93,9 +89,38 @@ public class Game {
         // which means the value is the last element of the domain and it does not meet the arc
         else if (rightHand.getDomain().indexOf(valueRight) == rightHand.getDomainSize()-1)
         {
-          leftHand.removeFromDomain(valueLeft); //remove that value from the domain of left hand side.
+          toRemove.add(valueLeft); //remove that value from the domain of left hand side.
         }
       }
     }
+    for(Integer i : toRemove)
+    {
+      leftHand.removeFromDomain(i);
+    }
+  }
+
+  /**
+   * It returns the arcs with the right hand side is equal to the input
+   * @param leftHandSide the field in the left hand side
+   * @param arcList  the list of arcs to be looked at
+   * @return a list of arcs where the right hand side is equal to leftHandSide
+   */
+  public List<Arc> findRightHandSides(Field leftHandSide, List<Arc> arcList, List<Arc> arcs)
+  {
+    List<Arc> arcsFound = new ArrayList<>();
+
+    for(Arc arc : arcList)    //for every arc in the arc list
+    {
+      if(leftHandSide == arc.getRightHandSide())  // if the lefthandside is same as the arc's right hand side
+      {
+          if(!arcs.contains(arc)) // and if that arc is not in the agenda
+          {
+            arcsFound.add(arc); //add that arc to the agenda
+          }
+      }
+    }
+
+    return arcsFound;
+
   }
 }

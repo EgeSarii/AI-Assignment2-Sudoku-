@@ -10,7 +10,7 @@ public class App {
      */
     public static void start(String filePath){
         Game game1 = new Game(new Sudoku(filePath));
-        //game1.showSudoku();
+        game1.showSudoku();
 
         if (game1.solve() && game1.validSolution()){
             System.out.println("Solved!");
@@ -18,6 +18,6 @@ public class App {
         else{
             System.out.println("Could not solve this sudoku :(");
         }
-       // game1.showSudoku();
+       game1.showSudoku();
     }
 }

@@ -7,6 +7,7 @@ public class Field {
   private List<Integer> domain;
   private List<Field> neighbours; //A list of all fields that this field is constrained by
   private List<Arc> arcs ;
+  private boolean initial ; //indicates if the field is initial or not.
   /*
    * ==============
    *  CONSTRUCTORS
@@ -21,6 +22,7 @@ public class Field {
       this.domain.add(i);
     } 
     this.arcs = new ArrayList<>();
+    this.initial = true;
   }
 
   // Constructor in case the field is known, i.e., it contains a value
@@ -30,6 +32,7 @@ public class Field {
     this.domain.add(initValue);
     this.arcs = new ArrayList<>();
     // does not add arc since it is not a variable to be changed.
+    this.initial = false;
   }
 
   /*
@@ -122,7 +125,12 @@ public class Field {
     
     return b;
   }
-
+//---------------------------------------------------
+  public boolean getInitial()
+  {
+    return initial;
+  }
+//------------------------------------------------------
   /*
    * ================
    *  MISC FUNCTIONS
