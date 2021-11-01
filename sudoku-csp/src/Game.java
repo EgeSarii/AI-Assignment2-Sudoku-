@@ -33,7 +33,7 @@ public class Game {
     }
 
     //Then add these arcs to the agenda.
-
+    System.out.println(arcs.size());
     List<Arc> agenda = new ArrayList<>();//agenda of arcs
     agenda.addAll(arcs);
     
@@ -118,12 +118,9 @@ public class Game {
 
     for(Arc arc : arcList)    //for every arc in the arc list
     {
-      if(leftHandSide == arc.getRightHandSide())  // if the lefthandside is same as the arc's right hand side
-      {
-          if(!agenda.contains(arc)) // and if that arc is not in the agenda
-          {
-            arcsFound.add(arc); //add that arc to the agenda
-          }
+      if(leftHandSide == arc.getRightHandSide() && (!agenda.contains(arc)))// if the lefthandside is same as the arc's right hand side
+      {                                                                   // and if that arc is not in the agenda
+        arcsFound.add(arc); //add that arc to the agenda
       }
     }
 

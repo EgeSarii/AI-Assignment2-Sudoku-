@@ -1,6 +1,6 @@
 public class App {
     public static void main(String[] args) throws Exception {
-        start("Sudoku4.txt");
+        start("Sudoku3.txt");
     }
 
     /**
