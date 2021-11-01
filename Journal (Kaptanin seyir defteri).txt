@@ -35,4 +35,14 @@ Dusunursek birden fazla fonskiyon var :
 Biraz update iyi olur. Arc classini olusturdum. Mantigim su sekilde. Field icinde arc listesi olusturdum. Eger basta sabit bir deger
 varsa arc listesi bos. Eger yoksa neighbourlari right hand olarak ekliyorum. Boylece aslinda 31 sabit var ( evet 31) bu 1620 - 620 =
 1000 arc demek. Test ettim dogru. Cunku her unknown field 20 arc yapacak. 50 tane unknown var. Hesap tutuyor. Yani unknown-> 6 gibi
-bir arc var ancak asla 6-> unknown yok. Bunu halletmek iyi oldu
+bir arc var ancak asla 6-> unknown yok. Bunu halletmek iyi oldu.
+
+----------------------------------------
+01.11.2021
+
+Evet AC-3 algoritmasini implement ettim ve Sudoku 1-2 ve 5te dogru calisiyor ancak 3 ve 4te calismiyor. Nedenini anlayamadim. Debug
+yapmaya calistim ancak olmadi. Bilmiyorum, bugun biraz daha bakarim belki. Ancak eger bu cozulurse geriye tek bir method kaliyor o da
+validSolution(). Saniyorum burada da basit bir checking yapmam gerek. Yani bu su demek her bir columnda 1den dokuza kadar sayilarin 
+hepsi var. Her bir rowda da birden dokuza kadar sayilarin hepsi var. Ve her bir gride de birden dokuza kadar sayilarin hepsi var.
+Column grid ve row sayisi dokuz oldugu icin eger birden dokuza kadar tum sayilar varsa hepsi bir kere var demektir. Bu da dogru
+demektir. Sanirim :) Neyse onunla sonra ilgilenecegim sonra da rapor.
