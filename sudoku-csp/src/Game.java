@@ -1,8 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
 
-
-
 public class Game {
   private Sudoku sudoku; 
   
@@ -74,7 +72,16 @@ public class Game {
    * @return true if the sudoku solution is correct
    */
   public boolean validSolution() {
-    // TODO: implement validSolution function
+    for (Field[] row : sudoku.getBoard())
+    {
+      for (Field field :row)
+      {
+        if(field.getDomainSize()!=1)
+        {
+          return false;
+        }
+      }
+    }
     return true;
   }
 

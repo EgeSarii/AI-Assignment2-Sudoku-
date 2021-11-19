@@ -77,3 +77,6 @@ return mrv
 
 Aynen bu kadar :) . Neyse bugunluk priority queue ve valid solution implement etmeliyim. Sonra da heuristicler. Ancak dedigim gibi priority 
 queue icin dikkatli olmaliyim heuristicler ile eslesmeli.
+
+-----------------
+Ilk gorevi yani valid solution i implement ettim. Yaklasik 2 dakika surdu ve calisiyor :) 
