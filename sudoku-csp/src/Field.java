@@ -93,17 +93,6 @@ public class Field {
     }
   }
 
-  public void getOtherArcs (Field field)
-  {
-    List<Arc> otherArcs = new ArrayList<>();
-
-    for(Field n : this.neighbours)
-    {
-      this.otherArcs.add(new Arc(this, n)); // Add each neighbour as an arc
-    }
-  }
-
-
   /*
    * ==================
    *  DOMAIN FUNCTIONS

@@ -46,3 +46,34 @@ validSolution(). Saniyorum burada da basit bir checking yapmam gerek. Yani bu su
 hepsi var. Her bir rowda da birden dokuza kadar sayilarin hepsi var. Ve her bir gride de birden dokuza kadar sayilarin hepsi var.
 Column grid ve row sayisi dokuz oldugu icin eger birden dokuza kadar tum sayilar varsa hepsi bir kere var demektir. Bu da dogru
 demektir. Sanirim :) Neyse onunla sonra ilgilenecegim sonra da rapor.
+-----------------------------------------------------
+
+19.11.2021
+
+AC-3 algoritmasinda sorun yok ancak 3 ve 4u cozemiyor. CUNKU takilip kaliyor, bunu backtracking ile cozebiliriz. Burada da uc tane heuristic 
+uygulariz derste ogrendigimiz. Bunun disinda valid solution isini cozmem gerekiyor. Zaten bence valid solutionu bu backtracking seyinde 
+kullanmaliyim. Eger valid solution yoksa backtracking yapmali ve tekrardan AC-3 uygulamaliyim. Ote yandan complexity nin anasini belledigimi
+itiraf etmeliyim. Neyse en iyisi bir ozet yapmak. Fazla vaktim kalmadi.23 unde bitirmek istiyorum. Yani bu 4 gun eder :). Epey az. Peki,
+yapilacaklar sunlar :
+
+1- Back tracking
+2- Valid solution
+3- getOtherNeighbours u kullanan bir fonksiyon(?)
+---------
+Yeni aldigim haberlere gore isler biraz degisik. Soyle ki backtracking falan yapmama gerek yok. Hatta heuristicleri onun icin kullanmiyorum.
+Zaten 2 tane sudoku yani 3 ve 4 cozulemiyormus AC-3 le ( bunu zaten biliyorduk) ve cozulmesine gerek de yokmus. Buradaki yani bu assignmentin
+amaclarindan biri de ac-3 un farkli heuristicler ile complexity sini hesaplamak. Bu arada valid solution icin tamamiyla domainlere bakmam
+yeterli, yani cok kolay. 81 tane variable var. Eger bir tanesinin bile domaini birden farkli ise iste valid solution degildir. Bu cepte
+Ikincisi ve onemlisi ise priority queue implement etmem gerek. Ve bu oyle ki heuristicler ile uyumlu olmali. Bunu iyi dusunmem gerekiyor.
+Bugun bitirebilirsem cok iyi olur. Ucuncu olarak da heuristicleri uygulamak gerek. Cok zor degildir diye tahmin ediyorum yani neticede domain
+sayilarina bakacagim mesela simdiden kafamda mrv icin pseudo code var :
+int minimum = Integer.Infinity
+mrv = first variable / null?
+for each variable v
+    if (v.getDomainSize < minimum)
+        minimum = v.getDomainSize
+        mrv = v
+return mrv
+
+Aynen bu kadar :) . Neyse bugunluk priority queue ve valid solution implement etmeliyim. Sonra da heuristicler. Ancak dedigim gibi priority 
+queue icin dikkatli olmaliyim heuristicler ile eslesmeli.
