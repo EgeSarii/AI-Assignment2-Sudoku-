@@ -80,3 +80,21 @@ queue icin dikkatli olmaliyim heuristicler ile eslesmeli.
 
 -----------------
 Ilk gorevi yani valid solution i implement ettim. Yaklasik 2 dakika surdu ve calisiyor :) 
+-----------------
+priority queue için aklıma parlak bir fikir geldi. Direkt javanın priority queue structure ını kullanabilirim
+Hatta comparator sınıfları yaratırım. sanıyorum iki tane heruistic kullanmam yeterli. Biri mrv ama digerini
+o kadar da anlamadım neyse zor değil. Bence kolay bir fikir. Normal ac-3 için de null kullanırım.
+---------------------------------------------
+
+20.11.2021
+
+Priority queue yu yaptım. Sanırım doğru da implement ettim. MRV constraintini de yaptım. Sanıyorum onu da
+doğru implement ettim çünkü queue dan arc seçme kısmına bir counter koydum ( complexity için) ve normal AC-3 
+3602 kere counter yaparken mrv ile 3144 yapt. Yani yaklaşık 500 daha az ki bu da 500/3600 = %14 etkili demek
+fena değil. İlginç olan aslında MRV için 4 farklı heuristic uygulayabilirim ama bunları reasoned yapmam gerek:
+1- MRV_LEFT ascending
+2- MRV_LEFT descending
+3- MRV_RIGHT ascending
+4- MRV_RIGHT descending
+
+İşte bunları reasonlamam gerek

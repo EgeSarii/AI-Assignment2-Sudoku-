@@ -1,5 +1,58 @@
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.PriorityQueue;
+import java.util.Queue;
+
+
+class Normal_Comparator implements Comparator<Arc>
+{
+
+  @Override
+  public int compare(Arc arc1, Arc arc2) {
+    return 0;
+  }
+}
+
+class MRV_Left_Comparator implements Comparator<Arc>
+{
+
+  @Override
+  public int compare(Arc arc1, Arc arc2) {
+    if(arc1.getLeftHandSide().getDomainSize() < arc2.getLeftHandSide().getDomainSize())
+    {
+      return 1;
+    }
+    else if (arc1.getLeftHandSide().getDomainSize() > arc2.getLeftHandSide().getDomainSize())
+    {
+      return -1;
+    }
+    else
+    {
+      return 0;
+    }
+  }
+
+}
+class MRV_Right_Comparator implements Comparator<Arc>
+{
+
+  @Override
+  public int compare(Arc arc1, Arc arc2) {
+    if(arc1.getRightHandSide().getDomainSize() < arc2.getRightHandSide().getDomainSize())
+    {
+      return -1;
+    }
+    else if (arc1.getRightHandSide().getDomainSize() > arc2.getRightHandSide().getDomainSize())
+    {
+      return 1;
+    }
+    else
+    {
+      return 0;
+    }
+  }
+}
 
 public class Game {
   private Sudoku sudoku; 
@@ -21,6 +74,7 @@ public class Game {
     // TODO: implement AC-3
     // For every field initialize its arcs (if it is a constant value, i.e. known then its arc list is empty)
     List<Arc> arcs =new ArrayList<>();// arc list of the game
+    int ct = 0;
     for (Field[] row : sudoku.getBoard())
     {
       for (Field field :row)
@@ -31,18 +85,16 @@ public class Game {
     }
 
     //Then add these arcs to the agenda.
-    System.out.println(arcs.size());
-    List<Arc> agenda = new ArrayList<>();//agenda of arcs
+    Queue<Arc> agenda = new PriorityQueue<>(new MRV_Right_Comparator());//agenda of arcs
     agenda.addAll(arcs);
-    
+
     
     //while agenda is not empty
-    int ct =0;
     while(!agenda.isEmpty())
     {
+      ct++;
       //take the first element first arc
-      Arc arc = agenda.get(0);
-      agenda.remove(0);
+      Arc arc = agenda.poll();
       int arcLeftDomainSize = arc.getLeftHandSide().getDomainSize();
       //revise the arc  
       revise(arc);
@@ -57,7 +109,6 @@ public class Game {
       {
         //for all arcs contain the left hand side as the right hand side add to the list
         agenda.addAll(findRightHandSides(arc.getLeftHandSide(),arcs , agenda));
-        ct++; 
        
       }
         
@@ -119,7 +170,7 @@ public class Game {
    * @param arcList  the list of arcs to be looked at
    * @return a list of arcs where the right hand side is equal to leftHandSide
    */
-  public List<Arc> findRightHandSides(Field leftHandSide, List<Arc> arcList, List<Arc> agenda)
+  public List<Arc> findRightHandSides(Field leftHandSide, List<Arc> arcList, Queue<Arc> agenda)
   {
     List<Arc> arcsFound = new ArrayList<>();
 
