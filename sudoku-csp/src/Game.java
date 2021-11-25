@@ -85,7 +85,7 @@ public class Game {
     }
 
     //Then add these arcs to the agenda.
-    Queue<Arc> agenda = new PriorityQueue<>(new MRV_Right_Comparator());//agenda of arcs
+    Queue<Arc> agenda = new PriorityQueue<>(new Normal_Comparator());//agenda of arcs
     agenda.addAll(arcs);
 
     
@@ -108,7 +108,7 @@ public class Game {
       if(arcLeftDomainSize != arc.getLeftHandSide().getDomainSize() )
       {
         //for all arcs contain the left hand side as the right hand side add to the list
-        agenda.addAll(findRightHandSides(arc.getLeftHandSide(),arcs , agenda));
+        agenda.addAll(findRightHandSides(arc,arcs , agenda));
        
       }
         
@@ -170,19 +170,28 @@ public class Game {
    * @param arcList  the list of arcs to be looked at
    * @return a list of arcs where the right hand side is equal to leftHandSide
    */
-  public List<Arc> findRightHandSides(Field leftHandSide, List<Arc> arcList, Queue<Arc> agenda)
+  public List<Arc> findRightHandSides(Arc arc, List<Arc> arcList, Queue<Arc> agenda)
   {
-    List<Arc> arcsFound = new ArrayList<>();
-
-    for(Arc arc : arcList)    //for every arc in the arc list
+    List<Arc> arcsFound1 = new ArrayList<>();
+    List<Arc> arcsFound2 = new ArrayList<>();
+    for (Field f : arc.getLeftHandSide().getOtherNeighbours(arc.getRightHandSide()))
     {
-      if(leftHandSide == arc.getRightHandSide() && (!agenda.contains(arc)))// if the lefthandside is same as the arc's right hand side
-      {                                                                   // and if that arc is not in the agenda
-        arcsFound.add(arc); //add that arc to the agenda
+      Arc newArc = (new Arc(f, arc.getLeftHandSide()));
+      if(!agenda.contains(newArc))
+      {
+        arcsFound1.add(newArc);
       }
     }
-
-    return arcsFound;
+    
+    for(Arc newArc : arcList)    //for every arc in the arc list
+    {
+      if(arc.getLeftHandSide() == newArc.getRightHandSide() && (!agenda.contains(newArc)))// if the lefthandside is same as the arc's right hand side
+      {                                                                   // and if that arc is not in the agenda
+        arcsFound2.add(newArc); //add that arc to the agenda
+      }
+    }
+    
+  return arcsFound2;
 
   }
 }

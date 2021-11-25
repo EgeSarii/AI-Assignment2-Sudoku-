@@ -98,3 +98,9 @@ fena değil. İlginç olan aslında MRV için 4 farklı heuristic uygulayabiliri
 4- MRV_RIGHT descending
 
 İşte bunları reasonlamam gerek
+--------------------------------------------------
+25.11.2021
+
+Motivasyon kaybı burn out veya tembellik de istersen. Hiçbir şey yapmadım. Hala daha şu otherARcs gibi bir 
+fonksiyon implement etmedim. Deadline ertelendi 1 Aralık oldu. Ancak bunu 28 Aralık son gün olarak bitirmek
+istiyorum. Bunu yapacağım.
