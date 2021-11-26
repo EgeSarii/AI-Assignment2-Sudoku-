@@ -7,7 +7,7 @@ public class Field {
   private List<Integer> domain;
   private List<Field> neighbours; //A list of all fields that this field is constrained by
   private List<Arc> arcs ;
-  private boolean initial ; //indicates if the field is initial or not.
+  private boolean initialized ; //indicates if the field is initial or not.
   /*
    * ==============
    *  CONSTRUCTORS
@@ -22,7 +22,7 @@ public class Field {
       this.domain.add(i);
     } 
     this.arcs = new ArrayList<>();
-    this.initial = true;
+    this.initialized = false;
   }
 
   // Constructor in case the field is known, i.e., it contains a value
@@ -32,7 +32,7 @@ public class Field {
     this.domain.add(initValue);
     this.arcs = new ArrayList<>();
     // does not add arc since it is not a variable to be changed.
-    this.initial = false;
+    this.initialized = true;
   }
 
   /*
@@ -83,7 +83,7 @@ public class Field {
 
   public void initializeArcs()
   {
-    if(this.value ==0) // if the field is unknown
+    if(!this.initialized) // if the field is unknown
     {
       for(Field n : this.neighbours)
       {
@@ -126,7 +126,7 @@ public class Field {
 //---------------------------------------------------
   public boolean getInitial()
   {
-    return initial;
+    return this.initialized;
   }
 //------------------------------------------------------
   /*
