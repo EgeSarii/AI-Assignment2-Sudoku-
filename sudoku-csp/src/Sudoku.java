@@ -76,115 +76,95 @@ public class Sudoku {
     {
       for(int j=0; j<9 ; j++)
       {
-        addNeighboursToField(grid[i][j], i, j, grid);
+        List<Field> neighbours = new ArrayList<>();
+        neighbours.addAll(sameSubSquare(i, j, grid));
+        neighbours.addAll(sameRowColumn(i, j, grid));
+
+        grid[i][j].setNeighbours(neighbours);
+
       }
     }
   }
 
-  /**
-   * Adds a list of neighbours to one field, i.e., arcs to be satisfied
-   * @param field a field
-   * @param neighbour neighbour to add to the field
-   */
-  private static void addNeighboursToField(Field field,int i, int j, Field[][] grid) {
+
+  private static List<Field> sameSubSquare(int i, int j, Field[][] grid)
+  {
     if ((i+1)% 3 ==1 ) // row 1,4,7
     {
       if((j+1) % 3 ==1) //column 1,4, 7
       {
-        List<Field> inSameGrid = Arrays.asList(grid[i+1][j+1],grid[i+1][j+2],grid[i+2][j+1],grid[i+2][j+2]);
-        ArrayList<Field> newNeighbours = new ArrayList<>();
-        newNeighbours.addAll(inSameGrid);
-        sameRowColumn (newNeighbours, i, j, grid);
-        field.setNeighbours(newNeighbours);
+        List<Field> inSameSubSquare = Arrays.asList(grid[i+1][j+1],grid[i+1][j+2],grid[i+2][j+1],grid[i+2][j+2]);
+        return inSameSubSquare;
       }
       else if ((j+1) % 3 ==2) //column 2,5,8
       {
-        List<Field> inSameGrid = Arrays.asList(grid[i+1][j-1],grid[i+2][j-1],grid[i+1][j+1],grid[i+2][j+1]);
-        ArrayList<Field> newNeighbours = new ArrayList<>();
-        newNeighbours.addAll(inSameGrid);
-        sameRowColumn (newNeighbours, i, j, grid);
-        field.setNeighbours(newNeighbours);
+        List<Field> inSameSubSquare = Arrays.asList(grid[i+1][j-1],grid[i+2][j-1],grid[i+1][j+1],grid[i+2][j+1]);
+
+        return inSameSubSquare;
       }
       else //(j+1)%3 ==0   column 3,6,9
       {
-        List<Field> inSameGrid = Arrays.asList(grid[i+1][j-1],grid[i+2][j-1],grid[i+2][j-1],grid[i+2][j-2]);
-        ArrayList<Field> newNeighbours = new ArrayList<>();
-        newNeighbours.addAll(inSameGrid);
-        sameRowColumn (newNeighbours, i, j, grid);
-        field.setNeighbours(newNeighbours);
+        List<Field> inSameSubSquare = Arrays.asList(grid[i+1][j-1],grid[i+2][j-1],grid[i+2][j-1],grid[i+2][j-2]);
+    
+        return inSameSubSquare;
       }
     }
     else if ((i+1)%3 == 2) // row 2,5,8
     {
       if((j+1) % 3 ==1) //column 1,4, 7
       {
-        List<Field> inSameGrid = Arrays.asList(grid[i-1][j+1],grid[i-1][j+2],grid[i+1][j+1],grid[i+1][j+2]);
-        ArrayList<Field> newNeighbours = new ArrayList<>();
-        newNeighbours.addAll(inSameGrid);
-        sameRowColumn (newNeighbours, i, j, grid);
-        field.setNeighbours(newNeighbours);
+        List<Field> inSameSubSquare = Arrays.asList(grid[i-1][j+1],grid[i-1][j+2],grid[i+1][j+1],grid[i+1][j+2]);
+        return inSameSubSquare;
       }
       else if ((j+1) % 3 ==2) //column 2,5,8
       {
-        List<Field> inSameGrid = Arrays.asList(grid[i+1][j-1],grid[i+1][j+1],grid[i-1][j+1],grid[i-1][j-1]);
-        ArrayList<Field> newNeighbours = new ArrayList<>();
-        newNeighbours.addAll(inSameGrid);
-        sameRowColumn (newNeighbours, i, j, grid);
-        field.setNeighbours(newNeighbours);
+        List<Field> inSameSubSquare = Arrays.asList(grid[i+1][j-1],grid[i+1][j+1],grid[i-1][j+1],grid[i-1][j-1]);
+        return inSameSubSquare;
       }
       else //(j+1)%3 ==0   column 3,6,9
       {
-        List<Field> inSameGrid = Arrays.asList(grid[i-1][j-1],grid[i-1][j-2],grid[i+1][j-1],grid[i+1][j-2]);
-        ArrayList<Field> newNeighbours = new ArrayList<>();
-        newNeighbours.addAll(inSameGrid);
-        sameRowColumn (newNeighbours, i, j, grid);
-        field.setNeighbours(newNeighbours);
+        List<Field> inSameSubSquare = Arrays.asList(grid[i-1][j-1],grid[i-1][j-2],grid[i+1][j-1],grid[i+1][j-2]);
+        return inSameSubSquare;
       }
     }
     else // row 3,6,9
     {
       if((j+1) % 3 ==1) //column 1,4, 7
       {
-        List<Field> inSameGrid = Arrays.asList(grid[i-1][j+1],grid[i-1][j+2],grid[i-2][j+1],grid[i-2][j+2]);
-        ArrayList<Field> newNeighbours = new ArrayList<>();
-        newNeighbours.addAll(inSameGrid);
-        sameRowColumn (newNeighbours, i, j, grid);
-        field.setNeighbours(newNeighbours);
+        List<Field> inSameSubSquare = Arrays.asList(grid[i-1][j+1],grid[i-1][j+2],grid[i-2][j+1],grid[i-2][j+2]);
+        return inSameSubSquare;
       }
       else if ((j+1) % 3 ==2) //column 2,5,8
       {
-        List<Field> inSameGrid = Arrays.asList(grid[i-1][j-1],grid[i-1][j+1],grid[i-2][j+1],grid[i-2][j-1]);
-        ArrayList<Field> newNeighbours = new ArrayList<>();
-        newNeighbours.addAll(inSameGrid);
-        sameRowColumn (newNeighbours, i, j, grid);
-        field.setNeighbours(newNeighbours);
+        List<Field> inSameSubSquare = Arrays.asList(grid[i-1][j-1],grid[i-1][j+1],grid[i-2][j+1],grid[i-2][j-1]);
+        return inSameSubSquare;
       }
       else //(j+1)%3 ==0   column 3,6,9
       {
-        List<Field> inSameGrid = Arrays.asList(grid[i-1][j-1],grid[i-1][j-2],grid[i-2][j-1],grid[i-2][j-2]);
-        ArrayList<Field> newNeighbours = new ArrayList<>();
-        newNeighbours.addAll(inSameGrid);
-        sameRowColumn (newNeighbours, i, j, grid);
-        field.setNeighbours(newNeighbours);
+        List<Field> inSameSubSquare = Arrays.asList(grid[i-1][j-1],grid[i-1][j-2],grid[i-2][j-1],grid[i-2][j-2]);
+        return inSameSubSquare;
       }
     }
   }
 
-  private static void sameRowColumn (List<Field> newNeighbours, int i, int j, Field[][] grid )
+  private static List<Field> sameRowColumn ( int i, int j, Field[][] grid )
   {
+
+    List<Field> inSameRowColum = new ArrayList<>();
     for (int k =0; k<9 ; k++ ) //fields in the same row and same column
     {
       if(k!= j)
       {
         Field neighbourInRow = grid[i][k];
-        newNeighbours.add(neighbourInRow);
+        inSameRowColum.add(neighbourInRow);
       }
       if(k!=i)
       {
         Field neighbourInColumn = grid[k][j];
-        newNeighbours.add(neighbourInColumn);
+        inSameRowColum.add(neighbourInColumn);
       }
     }
+    return inSameRowColum;
   }
 
   /**

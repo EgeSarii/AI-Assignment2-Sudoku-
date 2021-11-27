@@ -61,6 +61,7 @@ public class Field {
     return neighbours;
   }
 
+
   public List<Field> getOtherNeighbours(Field b) {
     List<Field> newNeighbours = new ArrayList<>(neighbours);
     newNeighbours.remove(b);
