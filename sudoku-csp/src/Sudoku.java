@@ -93,18 +93,18 @@ public class Sudoku {
     {
       if((j+1) % 3 ==1) //column 1,4, 7
       {
-        List<Field> inSameSubSquare = Arrays.asList(grid[i+1][j+1],grid[i+1][j+2],grid[i+2][j+1],grid[i+2][j+2]);
+        List<Field> inSameSubSquare = Arrays.asList(grid[i+1][j+1], grid[i+1][j+2], grid[i+2][j+1], grid[i+2][j+2]);
         return inSameSubSquare;
       }
       else if ((j+1) % 3 ==2) //column 2,5,8
       {
-        List<Field> inSameSubSquare = Arrays.asList(grid[i+1][j-1],grid[i+2][j-1],grid[i+1][j+1],grid[i+2][j+1]);
+        List<Field> inSameSubSquare = Arrays.asList(grid[i+1][j-1], grid[i+2][j-1], grid[i+1][j+1], grid[i+2][j+1]);
 
         return inSameSubSquare;
       }
       else //(j+1)%3 ==0   column 3,6,9
       {
-        List<Field> inSameSubSquare = Arrays.asList(grid[i+1][j-1],grid[i+2][j-1],grid[i+2][j-1],grid[i+2][j-2]);
+        List<Field> inSameSubSquare = Arrays.asList(grid[i+1][j-1], grid[i+2][j-1], grid[i+2][j-1], grid[i+2][j-2]);
     
         return inSameSubSquare;
       }
@@ -113,17 +113,17 @@ public class Sudoku {
     {
       if((j+1) % 3 ==1) //column 1,4, 7
       {
-        List<Field> inSameSubSquare = Arrays.asList(grid[i-1][j+1],grid[i-1][j+2],grid[i+1][j+1],grid[i+1][j+2]);
+        List<Field> inSameSubSquare = Arrays.asList(grid[i-1][j+1], grid[i-1][j+2], grid[i+1][j+1], grid[i+1][j+2]);
         return inSameSubSquare;
       }
       else if ((j+1) % 3 ==2) //column 2,5,8
       {
-        List<Field> inSameSubSquare = Arrays.asList(grid[i+1][j-1],grid[i+1][j+1],grid[i-1][j+1],grid[i-1][j-1]);
+        List<Field> inSameSubSquare = Arrays.asList(grid[i+1][j-1], grid[i+1][j+1], grid[i-1][j+1], grid[i-1][j-1]);
         return inSameSubSquare;
       }
       else //(j+1)%3 ==0   column 3,6,9
       {
-        List<Field> inSameSubSquare = Arrays.asList(grid[i-1][j-1],grid[i-1][j-2],grid[i+1][j-1],grid[i+1][j-2]);
+        List<Field> inSameSubSquare = Arrays.asList(grid[i-1][j-1], grid[i-1][j-2], grid[i+1][j-1], grid[i+1][j-2]);
         return inSameSubSquare;
       }
     }
@@ -131,17 +131,17 @@ public class Sudoku {
     {
       if((j+1) % 3 ==1) //column 1,4, 7
       {
-        List<Field> inSameSubSquare = Arrays.asList(grid[i-1][j+1],grid[i-1][j+2],grid[i-2][j+1],grid[i-2][j+2]);
+        List<Field> inSameSubSquare = Arrays.asList(grid[i-1][j+1], grid[i-1][j+2], grid[i-2][j+1], grid[i-2][j+2]);
         return inSameSubSquare;
       }
       else if ((j+1) % 3 ==2) //column 2,5,8
       {
-        List<Field> inSameSubSquare = Arrays.asList(grid[i-1][j-1],grid[i-1][j+1],grid[i-2][j+1],grid[i-2][j-1]);
+        List<Field> inSameSubSquare = Arrays.asList(grid[i-1][j-1], grid[i-1][j+1], grid[i-2][j+1], grid[i-2][j-1]);
         return inSameSubSquare;
       }
       else //(j+1)%3 ==0   column 3,6,9
       {
-        List<Field> inSameSubSquare = Arrays.asList(grid[i-1][j-1],grid[i-1][j-2],grid[i-2][j-1],grid[i-2][j-2]);
+        List<Field> inSameSubSquare = Arrays.asList(grid[i-1][j-1], grid[i-1][j-2], grid[i-2][j-1], grid[i-2][j-2]);
         return inSameSubSquare;
       }
     }
