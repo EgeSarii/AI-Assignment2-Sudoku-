@@ -103,16 +103,26 @@ public class Game {
       {
         return false;
       }
-      
+      List<Arc> newArcs1 = new ArrayList<>();
       // if the domain size has changed
       if(arcLeftDomainSize != arc.getLeftHandSide().getDomainSize() )
-      {
-        //for all arcs contain the left hand side as the right hand side add to the list
-        agenda.addAll(findRightHandSides(arc,arcs , agenda));
-       
-      }
+      { 
         
+        //for all arcs contain the left hand side as the right hand side add to the list
+       /* for(Field f : arc.getLeftHandSide().getOtherNeighbours(arc.getRightHandSide()))
+        {
+          Arc newArc = new Arc(f, arc.getLeftHandSide());  
+          if(!agenda.contains(newArc))
+          {
+            newArcs1.add(newArc);
+          }
+        */
+        
+       agenda.addAll(findRightHandSides(arc,arcs , agenda));
+      }
+   
     }
+    
     System.out.println(ct);
     return true;
   }
@@ -164,6 +174,7 @@ public class Game {
     }
   }
 
+
   /**
    * It returns the arcs with the right hand side is equal to the input
    * @param leftHandSide the field in the left hand side
@@ -177,7 +188,7 @@ public class Game {
     for (Field f : arc.getLeftHandSide().getOtherNeighbours(arc.getRightHandSide()))
     {
       Arc newArc = (new Arc(f, arc.getLeftHandSide()));
-      if(!agenda.contains(newArc))
+      if(!agenda.contains(newArc)&& !f.getInitial())
       {
         arcsFound1.add(newArc);
       }
@@ -191,7 +202,7 @@ public class Game {
       }
     }
     
-  return arcsFound2;
+  return arcsFound1;
 
   }
 }
