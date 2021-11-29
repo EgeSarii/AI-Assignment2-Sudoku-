@@ -6,7 +6,7 @@ public class Field {
   private int value = 0;
   private List<Integer> domain;
   private List<Field> neighbours; //A list of all fields that this field is constrained by
-  private List<Arc> arcs ;
+  private List<Arc> arcs ; // A list of all arcs of a field where the field is the left hand side of the arcs
   private boolean initialized ; //indicates if the field is initial or not.
   /*
    * ==============
@@ -22,7 +22,7 @@ public class Field {
       this.domain.add(i);
     } 
     this.arcs = new ArrayList<>();
-    this.initialized = false;
+    this.initialized = false; // the field is unknown, uninitialized
   }
 
   // Constructor in case the field is known, i.e., it contains a value
@@ -32,7 +32,7 @@ public class Field {
     this.domain.add(initValue);
     this.arcs = new ArrayList<>();
     // does not add arc since it is not a variable to be changed.
-    this.initialized = true;
+    this.initialized = true; //the field is known, initialized
   }
 
   /*
