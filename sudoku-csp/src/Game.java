@@ -41,11 +41,11 @@ class MRV_Right_Comparator implements Comparator<Arc>
   public int compare(Arc arc1, Arc arc2) {
     if(arc1.getRightHandSide().getDomainSize() < arc2.getRightHandSide().getDomainSize())
     {
-      return -1;
+      return 1;
     }
     else if (arc1.getRightHandSide().getDomainSize() > arc2.getRightHandSide().getDomainSize())
     {
-      return 1;
+      return -1;
     }
     else
     {
@@ -71,7 +71,6 @@ public class Game {
    * @return true if the constraints can be satisfied, else false
    */
   public boolean solve() {
-    // TODO: implement AC-3
     // For every field initialize its arcs (if it is a constant value, i.e. known then its arc list is empty)
     List<Arc> arcs =new ArrayList<>();// arc list of the game
     int ct = 0;
@@ -103,7 +102,6 @@ public class Game {
       {
         return false;
       }
-      List<Arc> newArcs1 = new ArrayList<>();
       // if the domain size has changed
       if(arcLeftDomainSize != arc.getLeftHandSide().getDomainSize() )
       { 
@@ -117,8 +115,13 @@ public class Game {
             newArcs1.add(newArc);
           }
         */
-        
-       agenda.addAll(findRightHandSides(arc,arcs , agenda));
+        for(Arc newArc : arcs)    //for every arc in the arc list
+        {
+          if(arc.getLeftHandSide() == newArc.getRightHandSide() && (!agenda.contains(newArc)))// if the lefthandside is same as the arc's right hand side
+          {                                                                   // and if that arc is not in the agenda
+            agenda.add(newArc); //add that arc to the agenda
+          }
+        }
       }
    
     }
@@ -175,34 +178,5 @@ public class Game {
   }
 
 
-  /**
-   * It returns the arcs with the right hand side is equal to the input
-   * @param leftHandSide the field in the left hand side
-   * @param arcList  the list of arcs to be looked at
-   * @return a list of arcs where the right hand side is equal to leftHandSide
-   */
-  public List<Arc> findRightHandSides(Arc arc, List<Arc> arcList, Queue<Arc> agenda)
-  {
-    List<Arc> arcsFound1 = new ArrayList<>();
-    List<Arc> arcsFound2 = new ArrayList<>();
-    for (Field f : arc.getLeftHandSide().getOtherNeighbours(arc.getRightHandSide()))
-    {
-      Arc newArc = (new Arc(f, arc.getLeftHandSide()));
-      if(!agenda.contains(newArc)&& !f.getInitial())
-      {
-        arcsFound1.add(newArc);
-      }
-    }
-    
-    for(Arc newArc : arcList)    //for every arc in the arc list
-    {
-      if(arc.getLeftHandSide() == newArc.getRightHandSide() && (!agenda.contains(newArc)))// if the lefthandside is same as the arc's right hand side
-      {                                                                   // and if that arc is not in the agenda
-        arcsFound2.add(newArc); //add that arc to the agenda
-      }
-    }
-    
-  return arcsFound1;
-
-  }
+  
 }
