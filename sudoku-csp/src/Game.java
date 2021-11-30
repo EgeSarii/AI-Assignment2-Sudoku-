@@ -14,38 +14,37 @@ class Normal_Comparator implements Comparator<Arc>
   }
 }
 
-class MRV_Left_Comparator implements Comparator<Arc>
-{
-
-  @Override
-  public int compare(Arc arc1, Arc arc2) {
-    if(arc1.getLeftHandSide().getDomainSize() < arc2.getLeftHandSide().getDomainSize())
-    {
-      return 1;
-    }
-    else if (arc1.getLeftHandSide().getDomainSize() > arc2.getLeftHandSide().getDomainSize())
-    {
-      return -1;
-    }
-    else
-    {
-      return 0;
-    }
-  }
-
-}
-class MRV_Right_Comparator implements Comparator<Arc>
+class MRV_Comparator implements Comparator<Arc>
 {
 
   @Override
   public int compare(Arc arc1, Arc arc2) {
     if(arc1.getRightHandSide().getDomainSize() < arc2.getRightHandSide().getDomainSize())
     {
-      return 1;
+      return -1;
     }
     else if (arc1.getRightHandSide().getDomainSize() > arc2.getRightHandSide().getDomainSize())
     {
+      return 1;
+    }
+    else
+    {
+      return 0;
+    }
+  }
+}
+class PFA_Comparator implements Comparator<Arc>
+{
+
+  @Override
+  public int compare(Arc arc1, Arc arc2) {
+    if(arc1.getRightHandSide().getDomainSize()==1 && arc2.getRightHandSide().getDomainSize()!=1)
+    {
       return -1;
+    }
+    else if (arc1.getRightHandSide().getDomainSize()!=1 && arc2.getRightHandSide().getDomainSize()==1)
+    {
+      return 1;
     }
     else
     {
@@ -84,7 +83,7 @@ public class Game {
     }
 
     //Then add these arcs to the agenda.
-    Queue<Arc> agenda = new PriorityQueue<>(new Normal_Comparator());//agenda of arcs
+    Queue<Arc> agenda = new PriorityQueue<>(new MRV_Comparator());//agenda of arcs
     agenda.addAll(arcs);
 
     
@@ -118,7 +117,7 @@ public class Game {
         for(Arc newArc : arcs)    //for every arc in the arc list
         {
           if(arc.getLeftHandSide() == newArc.getRightHandSide() && (!agenda.contains(newArc)))// if the lefthandside is same as the arc's right hand side
-          {                                                                   // and if that arc is not in the agenda
+          {                                             // and if that arc is not in the agenda
             agenda.add(newArc); //add that arc to the agenda
           }
         }
@@ -167,13 +166,13 @@ public class Game {
         else if (rightHand.getDomain().indexOf(valueRight)== rightHand.getDomainSize()-1)
         
         {
-          toRemove.add(valueLeft); //remove that value from the domain of left hand side.
+          toRemove.add(valueLeft); //add to the list of values to be removed
         }
       }
     }
     for(Integer i : toRemove)
     {
-      leftHand.removeFromDomain(i);
+      leftHand.removeFromDomain(i);//remove that value from the domain of left hand side.
     }
   }
 
