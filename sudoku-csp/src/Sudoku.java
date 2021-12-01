@@ -87,7 +87,14 @@ public class Sudoku {
     }
   }
 
-
+  /**
+   * Implementation of algorithm for finding all non-overlapping neighbours of 
+   * a field in the same sub-square
+   * @param i row index of field
+   * @param j column index of field
+   * @param grid the sudoku table
+   * @return a list of all non-overlapping neighbours
+   */
   private static List<Field> sameSubSquare(int i, int j, Field[][] grid)
   { 
 	List<Field> inSameSubSquare = new ArrayList<>();
@@ -138,7 +145,14 @@ public class Sudoku {
     }
     return inSameSubSquare;
   }
-
+  /**
+   * Implementation of algorithm for finding all neighbours of 
+   * a field in the same row and same column
+   * @param i row index of field
+   * @param j column index of field
+   * @param grid the sudoku table
+   * @return a list of all neighbours in the same row-column
+   */
   private static List<Field> sameRowColumn ( int i, int j, Field[][] grid )
   {
 

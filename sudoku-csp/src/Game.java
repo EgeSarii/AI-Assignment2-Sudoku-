@@ -4,7 +4,10 @@ import java.util.List;
 import java.util.PriorityQueue;
 import java.util.Queue;
 
-
+/**
+ * Comparator class for Normal(default) comparator for AC-3
+ * It does change nothing.
+ */ 
 class Normal_Comparator implements Comparator<Arc>
 {
 
@@ -13,7 +16,11 @@ class Normal_Comparator implements Comparator<Arc>
     return 0;
   }
 }
-
+/**
+ * Comparator class for MRV Heuristics comparator for AC-3
+ * It sorts the arcs in ascending order where the arcs with less domain size
+ * of right hand side are prioritized.
+ */ 
 class MRV_Comparator implements Comparator<Arc>
 {
 
@@ -33,6 +40,11 @@ class MRV_Comparator implements Comparator<Arc>
     }
   }
 }
+/**
+ * Comparator class for PFA Heuristics comparator for AC-3
+ * It prioritize the arcs wiht right hand side has domain size of 1.
+ * If they are not 1, it changes nothing.
+ */ 
 class PFA_Comparator implements Comparator<Arc>
 {
 
@@ -72,7 +84,7 @@ public class Game {
   public boolean solve() {
     // For every field initialize its arcs (if it is a constant value, i.e. known then its arc list is empty)
     List<Arc> arcs =new ArrayList<>();// arc list of the game
-    int ct = 0;
+    int ct = 0; //counter for complexity measurement
     for (Field[] row : sudoku.getBoard())
     {
       for (Field field :row)
@@ -83,7 +95,7 @@ public class Game {
     }
 
     //Then add these arcs to the agenda.
-    Queue<Arc> agenda = new PriorityQueue<>(new MRV_Comparator());//agenda of arcs
+    Queue<Arc> agenda = new PriorityQueue<>(new PFA_Comparator());//agenda of arcs
     agenda.addAll(arcs);
 
     
@@ -106,14 +118,6 @@ public class Game {
       { 
         
         //for all arcs contain the left hand side as the right hand side add to the list
-       /* for(Field f : arc.getLeftHandSide().getOtherNeighbours(arc.getRightHandSide()))
-        {
-          Arc newArc = new Arc(f, arc.getLeftHandSide());  
-          if(!agenda.contains(newArc))
-          {
-            newArcs1.add(newArc);
-          }
-        */
         for(Arc newArc : arcs)    //for every arc in the arc list
         {
           if(arc.getLeftHandSide() == newArc.getRightHandSide() && (!agenda.contains(newArc)))// if the lefthandside is same as the arc's right hand side
@@ -139,15 +143,18 @@ public class Game {
     {
       for (Field field :row)
       {
-        if(field.getDomainSize()!=1)
+        if(field.getDomainSize()!=1) //if the domain size of one field is not 1
         {
-          return false;
+          return false; // then the solution is not valid
         }
       }
     }
-    return true;
+    return true;//if the domain sizes of every field is 1, then the solution is valid
   }
-
+  /**
+   * Implementation of Revise Operation
+   * @param arc arc to be revised
+   */
   public void revise(Arc arc)
   {
     Field leftHand = arc.getLeftHandSide();
@@ -175,7 +182,4 @@ public class Game {
       leftHand.removeFromDomain(i);//remove that value from the domain of left hand side.
     }
   }
-
-
-  
 }
