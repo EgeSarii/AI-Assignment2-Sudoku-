@@ -129,7 +129,7 @@ public class Game {
    
     }
     
-    System.out.println(ct);
+    System.out.println("Practical Complexity : " + ct);
     return true;
   }
 
